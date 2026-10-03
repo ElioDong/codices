@@ -1,0 +1,28 @@
+# --- Operating system ----------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Tool caches ---------------------------------------------------------
+.npm-cache/
+.vite/
+node_modules/
+.cache/
+
+# --- Editor --------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- Temporary files -----------------------------------------------------
+*.tmp
+*.bak
+*.log
+
+# --- Local backups (not part of the project) -----------------------------
+.backup-*.tar.gz
+
+# --- Office preview backups ----------------------------------------------
+~$*.docx
+~$*.xlsx

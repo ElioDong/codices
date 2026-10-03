@@ -1,0 +1,1271 @@
+/* ==========================================================================
+   CODICES — Digital library of illuminated manuscripts
+   Main stylesheet
+   --------------------------------------------------------------------------
+   Index
+   01. Design tokens (custom properties)
+   02. Reset and base
+   03. Typography
+   04. Layout and containers
+   05. Header and navigation
+   06. Components (buttons, cards, badges, tables, filters)
+   07. Home sections
+   08. Footer
+   09. Themes (light / dark)
+   10. Accessibility and user preferences
+   11. Print
+   12. Media queries
+   ========================================================================== */
+
+
+/* ==========================================================================
+   01. DESIGN TOKENS
+   Every reusable value lives here: changing a token updates
+   the whole site. It is the principle of the "single source of truth".
+   ========================================================================== */
+
+:root {
+  /* --- Colour palette --------------------------------------------- */
+  --colore-pergamena:      #fbf7ef;
+  --colore-superficie:     #ffffff;
+  --colore-superficie-alt: #f3ede1;
+  --colore-inchiostro:     #1c1712;
+  --colore-inchiostro-2:   #4a4238;
+  --colore-tenue:          #6f6555;
+  --colore-bordo:          #ddd3c1;
+  --colore-bordo-forte:    #c4b8a2;
+
+  --colore-accento:        #8c2f39;  /* minium red, the color of rubrics */
+  --colore-accento-scuro:  #6d2029;
+  --colore-oro:            #9a7620;  /* gold leaf */
+  --colore-oro-tenue:      #f0e4c8;
+
+  --colore-focus:          #1c5f9e;
+
+  /* --- Typography ------------------------------------------------------- */
+  --font-titoli: "Iowan Old Style", "Palatino Linotype", Palatino,
+                 "Book Antiqua", Georgia, serif;
+  --font-testo:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono:   ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas,
+                 monospace;
+
+  /* Fluid type scale: the type grows with the window without
+     needing media queries, thanks to clamp(minimum, ideal, maximum). */
+  --testo-xs:  0.78rem;
+  --testo-s:   0.875rem;
+  --testo-m:   1rem;
+  --testo-l:   clamp(1.125rem, 1.06rem + 0.3vw, 1.25rem);
+  --testo-xl:  clamp(1.35rem, 1.2rem + 0.7vw, 1.75rem);
+  --testo-2xl: clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem);
+  --testo-3xl: clamp(2.25rem, 1.6rem + 3vw, 4rem);
+
+  --interlinea-stretta: 1.2;
+  --interlinea-testo:   1.7;
+  --spaziatura-lettere: 0.01em;
+
+  /* --- Spacing (base-8 scale) -------------------------------------- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+
+  /* --- Shapes and shadows ---------------------------------------------------- */
+  --raggio-s:   4px;
+  --raggio-m:   8px;
+  --raggio-l:   14px;
+  --raggio-tondo: 999px;
+
+  --ombra-s: 0 1px 2px rgba(28, 23, 18, 0.06);
+  --ombra-m: 0 4px 14px rgba(28, 23, 18, 0.09);
+  --ombra-l: 0 14px 40px rgba(28, 23, 18, 0.14);
+
+  /* --- Structure -------------------------------------------------------- */
+  --larghezza-contenuto: 72rem;
+  --larghezza-testo:     68ch;
+  --altezza-intestazione: 4.5rem;
+
+  --transizione: 180ms cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+
+/* ==========================================================================
+   02. RESET AND BASE
+   Minimal and targeted reset: it normalizes the different behaviours across browsers
+   without erasing the good default settings.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  /* Anchors do not end up under the fixed header */
+  scroll-padding-top: calc(var(--altezza-intestazione) + var(--sp-4));
+}
+
+body {
+  margin: 0;
+  background-color: var(--colore-pergamena);
+  color: var(--colore-inchiostro);
+  font-family: var(--font-testo);
+  font-size: var(--testo-m);
+  line-height: var(--interlinea-testo);
+  letter-spacing: var(--spaziatura-lettere);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Content images receive alternative text; decorative ones
+   have alt="" and are not read by screen readers. */
+
+/* ==========================================================================
+   03. TYPOGRAPHY
+   ========================================================================== */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-titoli);
+  line-height: var(--interlinea-stretta);
+  color: var(--colore-inchiostro);
+  margin: 0 0 var(--sp-4);
+  text-wrap: balance;            /* avoids final lines with a single word */
+  font-weight: 600;
+}
+
+h1 { font-size: var(--testo-3xl); }
+h2 { font-size: var(--testo-2xl); margin-top: var(--sp-7); }
+h3 { font-size: var(--testo-xl);  margin-top: var(--sp-6); }
+h4 { font-size: var(--testo-l);   margin-top: var(--sp-5); }
+
+p {
+  margin: 0 0 var(--sp-4);
+  text-wrap: pretty;
+}
+
+/* Opening line of a paragraph: the first words in small caps */
+.occhiello {
+  font-size: var(--testo-s);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--colore-accento);
+  margin-bottom: var(--sp-3);
+}
+
+.sottotitolo {
+  font-size: var(--testo-l);
+  color: var(--colore-tenue);
+  max-width: 60ch;
+}
+
+a {
+  color: var(--colore-accento);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--transizione);
+}
+
+a:hover {
+  color: var(--colore-accento-scuro);
+}
+
+/* Focus indicator always visible: a WCAG 2.4.7 accessibility requirement.
+   :focus-visible avoids showing the ring when clicking with the mouse. */
+:focus-visible {
+  outline: 3px solid var(--colore-focus);
+  outline-offset: 2px;
+  border-radius: var(--raggio-s);
+}
+
+ul, ol {
+  padding-left: 1.4em;
+}
+
+li {
+  margin-bottom: var(--sp-2);
+}
+
+li::marker {
+  color: var(--colore-accento);
+}
+
+blockquote {
+  margin: var(--sp-6) 0;
+  padding: var(--sp-2) 0 var(--sp-2) var(--sp-5);
+  border-left: 3px solid var(--colore-oro);
+  font-family: var(--font-titoli);
+  font-size: var(--testo-l);
+  font-style: italic;
+  color: var(--colore-inchiostro-2);
+}
+
+blockquote cite {
+  display: block;
+  margin-top: var(--sp-3);
+  font-size: var(--testo-s);
+  font-style: normal;
+  color: var(--colore-tenue);
+}
+
+code, pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+code {
+  background-color: var(--colore-superficie-alt);
+  padding: 0.15em 0.4em;
+  border-radius: var(--raggio-s);
+  border: 1px solid var(--colore-bordo);
+}
+
+pre {
+  background-color: var(--colore-superficie-alt);
+  border: 1px solid var(--colore-bordo);
+  border-radius: var(--raggio-m);
+  padding: var(--sp-4);
+  overflow-x: auto;
+  line-height: 1.6;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--colore-bordo);
+  margin: var(--sp-7) 0;
+}
+
+/* "Skip to content" link: first focusable element of the page,
+   hidden until it receives keyboard focus. */
+.salta-al-contenuto {
+  position: absolute;
+  left: var(--sp-4);
+  top: -100%;
+  z-index: 100;
+  padding: var(--sp-3) var(--sp-5);
+  background-color: var(--colore-inchiostro);
+  color: var(--colore-pergamena);
+  border-radius: 0 0 var(--raggio-m) var(--raggio-m);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.salta-al-contenuto:focus {
+  top: 0;
+  color: var(--colore-pergamena);
+}
+
+
+/* ==========================================================================
+   04. LAYOUT AND CONTAINERS
+   ========================================================================== */
+
+.contenitore {
+  width: min(100% - 2 * var(--sp-5), var(--larghezza-contenuto));
+  margin-inline: auto;
+}
+
+.contenitore--stretto {
+  width: min(100% - 2 * var(--sp-5), 54rem);
+  margin-inline: auto;
+}
+
+.sezione {
+  padding-block: var(--sp-8);
+}
+
+.sezione--alt {
+  background-color: var(--colore-superficie-alt);
+  border-block: 1px solid var(--colore-bordo);
+}
+
+.intestazione-sezione {
+  max-width: var(--larghezza-testo);
+  margin-bottom: var(--sp-6);
+}
+
+/* Automatic grid: the columns adapt without media queries.
+   auto-fit + minmax is the modern way to build responsive grids. */
+.griglia {
+  display: grid;
+  gap: var(--sp-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+}
+
+.griglia--2 {
+  grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
+}
+
+/* Two-column text for long paragraphs (wide screens) */
+.prosa {
+  max-width: var(--larghezza-testo);
+}
+
+.prosa > p {
+  font-size: var(--testo-l);
+}
+
+
+/* ==========================================================================
+   05. HEADER AND NAVIGATION
+   ========================================================================== */
+
+.intestazione {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: color-mix(in srgb, var(--colore-pergamena) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--colore-bordo);
+}
+
+.intestazione__interno {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  min-height: var(--altezza-intestazione);
+}
+
+.marchio {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  text-decoration: none;
+  color: var(--colore-inchiostro);
+  font-family: var(--font-titoli);
+  font-size: var(--testo-l);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.marchio:hover {
+  color: var(--colore-accento);
+}
+
+.marchio__simbolo {
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  color: var(--colore-accento);
+}
+
+.marchio__sottotitolo {
+  display: block;
+  font-family: var(--font-testo);
+  font-size: var(--testo-xs);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--colore-tenue);
+}
+
+/* --- Main navigation --------------------------------------------- */
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.nav__elenco {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__elenco li {
+  margin: 0;
+}
+
+.nav__voce {
+  display: block;
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--raggio-m);
+  text-decoration: none;
+  color: var(--colore-inchiostro-2);
+  font-size: var(--testo-s);
+  font-weight: 500;
+  transition: background-color var(--transizione), color var(--transizione);
+}
+
+.nav__voce:hover {
+  background-color: var(--colore-superficie-alt);
+  color: var(--colore-inchiostro);
+}
+
+/* Current page: aria-current="page" is used in the HTML and it is styled
+   through an attribute selector. The state is not entrusted to color alone:
+   there is also an underline, for those who cannot distinguish colours. */
+.nav__voce[aria-current="page"] {
+  color: var(--colore-accento);
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 var(--colore-accento);
+}
+
+/* --- Theme toggle button ----------------------------------- */
+
+.bottone-tema {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--colore-bordo);
+  border-radius: var(--raggio-m);
+  background-color: var(--colore-superficie);
+  color: var(--colore-inchiostro-2);
+  cursor: pointer;
+  transition: background-color var(--transizione), border-color var(--transizione);
+}
+
+.bottone-tema:hover {
+  background-color: var(--colore-superficie-alt);
+  border-color: var(--colore-bordo-forte);
+}
+
+.bottone-tema svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+/* In the light theme the moon is shown (action: switch to dark) and vice versa */
+.bottone-tema .icona-sole { display: none; }
+:root[data-tema="scuro"] .bottone-tema .icona-sole { display: block; }
+:root[data-tema="scuro"] .bottone-tema .icona-luna { display: none; }
+
+/* --- Hamburger button (narrow screens only) --------------------------- */
+
+.bottone-menu {
+  display: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--colore-bordo);
+  border-radius: var(--raggio-m);
+  background-color: var(--colore-superficie);
+  color: var(--colore-inchiostro);
+  cursor: pointer;
+}
+
+.bottone-menu svg { width: 1.25rem; height: 1.25rem; }
+
+
+/* ==========================================================================
+   06. COMPONENTS
+   ========================================================================== */
+
+/* --- Buttons ------------------------------------------------------------ */
+
+.bottone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-5);
+  border: 1px solid transparent;
+  border-radius: var(--raggio-m);
+  background-color: var(--colore-accento);
+  color: #fff;
+  font-family: inherit;
+  font-size: var(--testo-s);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--transizione), transform var(--transizione),
+              box-shadow var(--transizione);
+}
+
+.bottone:hover {
+  background-color: var(--colore-accento-scuro);
+  color: #fff;
+  box-shadow: var(--ombra-m);
+}
+
+.bottone:active {
+  transform: translateY(1px);
+}
+
+.bottone--secondario {
+  background-color: transparent;
+  color: var(--colore-inchiostro);
+  border-color: var(--colore-bordo-forte);
+}
+
+.bottone--secondario:hover {
+  background-color: var(--colore-superficie-alt);
+  color: var(--colore-inchiostro);
+}
+
+.gruppo-bottoni {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+}
+
+/* --- Badges / labels -------------------------------------------------- */
+
+.badge {
+  display: inline-block;
+  padding: 0.2em 0.7em;
+  border-radius: var(--raggio-tondo);
+  background-color: var(--colore-oro-tenue);
+  color: var(--colore-oro);
+  font-size: var(--testo-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.badge--neutro {
+  background-color: var(--colore-superficie-alt);
+  color: var(--colore-tenue);
+  border: 1px solid var(--colore-bordo);
+}
+
+/* --- Manuscript card ------------------------------------------------- */
+
+.scheda {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--colore-superficie);
+  border: 1px solid var(--colore-bordo);
+  border-radius: var(--raggio-l);
+  overflow: hidden;
+  transition: transform var(--transizione), box-shadow var(--transizione),
+              border-color var(--transizione);
+}
+
+.scheda:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--ombra-l);
+  border-color: var(--colore-bordo-forte);
+}
+
+.scheda__immagine {
+  aspect-ratio: 4 / 3;
+  background-color: var(--colore-oro-tenue);
+  border-bottom: 1px solid var(--colore-bordo);
+  object-fit: cover;
+  width: 100%;
+}
+
+.scheda__corpo {
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.scheda__segnatura {
+  font-family: var(--font-mono);
+  font-size: var(--testo-xs);
+  color: var(--colore-tenue);
+  margin-bottom: var(--sp-2);
+}
+
+.scheda__titolo {
+  font-size: var(--testo-l);
+  margin: 0 0 var(--sp-2);
+}
+
+/* The link extends over the whole card thanks to ::after: the entire card
+   becomes clickable without nesting interactive elements (forbidden by HTML). */
+.scheda__titolo a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.scheda__corpo { position: relative; }
+
+.scheda__meta {
+  font-size: var(--testo-s);
+  color: var(--colore-tenue);
+  margin-bottom: var(--sp-4);
+  flex-grow: 1;
+}
+
+.scheda__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  align-items: center;
+}
+
+/* --- Information box ----------------------------------------------- */
+
+.riquadro {
+  padding: var(--sp-5);
+  border: 1px solid var(--colore-bordo);
+  border-left: 4px solid var(--colore-oro);
+  border-radius: var(--raggio-m);
+  background-color: var(--colore-superficie);
+}
+
+.riquadro h3,
+.riquadro h4 {
+  margin-top: 0;
+}
+
+.riquadro--attenzione {
+  border-left-color: var(--colore-accento);
+  background-color: color-mix(in srgb, var(--colore-accento) 5%, var(--colore-superficie));
+}
+
+.riquadro--testo {
+  max-width: var(--larghezza-testo);
+}
+
+.riquadro--indice {
+  margin-bottom: var(--sp-7);
+}
+
+/* --- Statistics -------------------------------------------------------- */
+
+.statistiche {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr));
+  gap: var(--sp-5);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.statistica {
+  text-align: center;
+  margin: 0;
+}
+
+.statistica__numero {
+  display: block;
+  font-family: var(--font-titoli);
+  font-size: var(--testo-2xl);
+  font-weight: 600;
+  color: var(--colore-accento);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.statistica__etichetta {
+  display: block;
+  margin-top: var(--sp-2);
+  font-size: var(--testo-s);
+  color: var(--colore-tenue);
+}
+
+/* --- Metadata table ------------------------------------------------ */
+
+.tabella-metadati {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--testo-s);
+  margin-bottom: var(--sp-5);
+}
+
+.tabella-metadati caption {
+  text-align: left;
+  font-weight: 600;
+  padding-bottom: var(--sp-3);
+  color: var(--colore-tenue);
+  font-size: var(--testo-s);
+}
+
+.tabella-metadati th,
+.tabella-metadati td {
+  text-align: left;
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--colore-bordo);
+  vertical-align: top;
+}
+
+.tabella-metadati th {
+  width: 34%;
+  font-weight: 600;
+  color: var(--colore-inchiostro-2);
+  background-color: var(--colore-superficie-alt);
+}
+
+.tabella-metadati tbody tr:hover {
+  background-color: color-mix(in srgb, var(--colore-oro-tenue) 40%, transparent);
+}
+
+/* --- Filters ------------------------------------------------------------- */
+
+.filtri {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  align-items: flex-end;
+  padding: var(--sp-5);
+  background-color: var(--colore-superficie);
+  border: 1px solid var(--colore-bordo);
+  border-radius: var(--raggio-l);
+  margin-bottom: var(--sp-6);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  flex: 1 1 12rem;
+}
+
+.campo label {
+  font-size: var(--testo-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--colore-tenue);
+}
+
+.campo input,
+.campo select {
+  padding: var(--sp-3) var(--sp-4);
+  border: 1px solid var(--colore-bordo-forte);
+  border-radius: var(--raggio-m);
+  background-color: var(--colore-superficie);
+  color: var(--colore-inchiostro);
+  font-family: inherit;
+  font-size: var(--testo-s);
+  transition: border-color var(--transizione), box-shadow var(--transizione);
+}
+
+.campo input:focus,
+.campo select:focus {
+  border-color: var(--colore-focus);
+  outline: 3px solid color-mix(in srgb, var(--colore-focus) 25%, transparent);
+  outline-offset: 0;
+}
+
+.conteggio-risultati {
+  font-size: var(--testo-s);
+  color: var(--colore-tenue);
+  margin-bottom: var(--sp-5);
+}
+
+/* --- Breadcrumbs --------------------------------------------------- */
+
+.briciole {
+  padding-block: var(--sp-4);
+  font-size: var(--testo-xs);
+  color: var(--colore-tenue);
+}
+
+.briciole ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.briciole li {
+  margin: 0;
+  display: flex;
+  gap: var(--sp-2);
+}
+
+/* Separator inserted via CSS: it is decorative, it must not be in the HTML */
+.briciole li + li::before {
+  content: "/";
+  color: var(--colore-bordo-forte);
+}
+
+/* --- Empty message ---------------------------------------------------- */
+
+.messaggio-vuoto {
+  padding: var(--sp-7);
+  text-align: center;
+  color: var(--colore-tenue);
+  border: 1px dashed var(--colore-bordo-forte);
+  border-radius: var(--raggio-l);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* --- Figures with captions ---------------------------------------------- */
+
+.figura {
+  margin: 0;
+}
+
+.figura img {
+  border: 1px solid var(--colore-bordo);
+  border-radius: var(--raggio-l);
+}
+
+.figura__didascalia {
+  margin-top: var(--sp-3);
+  font-size: var(--testo-s);
+  color: var(--colore-tenue);
+}
+
+.messaggio-vuoto p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Utilities ------------------------------------------------------------
+   Few and declared: they serve to avoid style attributes in the HTML, which
+   would be hard to maintain and not reusable. They do not replace
+   the component classes, they sit alongside them for one-off cases. */
+
+.azioni-intestazione {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.sezione--continua {
+  padding-top: var(--sp-5);
+}
+
+.testo-tenue {
+  color: var(--colore-tenue);
+}
+
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+
+/* Detaches a paragraph from the block that precedes it */
+.distanza-alta {
+  margin-top: var(--sp-6);
+}
+
+.nota-piccola {
+  font-size: var(--testo-s);
+  color: var(--colore-tenue);
+}
+
+/* Title of a box that uses the body font instead of the title's italics,
+   to distinguish it from the hierarchy of section headings. */
+.riquadro__titolo {
+  font-family: var(--font-testo);
+  font-size: var(--testo-s);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--colore-tenue);
+  margin-top: 0;
+}
+
+.spezzare-parola {
+  word-break: break-all;
+}
+
+/* In-page index in multiple columns. The fallback to a single column on narrow
+   screens is in section 12, together with the other media queries. */
+.indice-colonne {
+  columns: 2;
+  column-gap: var(--sp-6);
+  margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+   07. HOME SECTIONS
+   ========================================================================== */
+
+.eroe {
+  position: relative;
+  padding-block: var(--sp-9);
+  background:
+    radial-gradient(circle at 15% 20%,
+      color-mix(in srgb, var(--colore-oro) 12%, transparent), transparent 45%),
+    radial-gradient(circle at 85% 0%,
+      color-mix(in srgb, var(--colore-accento) 10%, transparent), transparent 40%);
+  border-bottom: 1px solid var(--colore-bordo);
+}
+
+.eroe__testo {
+  max-width: 46rem;
+}
+
+.eroe h1 {
+  margin-bottom: var(--sp-5);
+}
+
+.eroe__descrizione {
+  font-size: var(--testo-l);
+  color: var(--colore-inchiostro-2);
+  margin-bottom: var(--sp-6);
+}
+
+/* --- List of numbered steps ------------------------------------------ */
+
+.passi {
+  counter-reset: passo;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+}
+
+.passi li {
+  counter-increment: passo;
+  margin: 0;
+  padding-top: var(--sp-6);
+  position: relative;
+  border-top: 2px solid var(--colore-bordo);
+}
+
+.passi li::before {
+  content: counter(passo, decimal-leading-zero);
+  position: absolute;
+  top: var(--sp-3);
+  left: 0;
+  font-family: var(--font-mono);
+  font-size: var(--testo-s);
+  font-weight: 700;
+  color: var(--colore-accento);
+}
+
+.passi h3 {
+  margin-top: 0;
+  font-size: var(--testo-l);
+}
+
+.passi p {
+  font-size: var(--testo-s);
+  color: var(--colore-tenue);
+  margin-bottom: 0;
+}
+
+/* Row for the expected deliverable at the end of each phase */
+.passi__prodotto {
+  margin-top: var(--sp-3);
+}
+
+/* --- Quote band --------------------------------------------------- */
+
+.fascia-citazione {
+  padding-block: var(--sp-8);
+  background-color: var(--colore-inchiostro);
+  color: var(--colore-pergamena);
+}
+
+.fascia-citazione blockquote {
+  border-left-color: var(--colore-oro);
+  color: var(--colore-pergamena);
+  max-width: 48rem;
+  margin-inline: auto;
+  text-align: center;
+  border-left: none;
+  padding-left: 0;
+  font-size: var(--testo-xl);
+}
+
+.fascia-citazione cite {
+  color: color-mix(in srgb, var(--colore-pergamena) 65%, transparent);
+}
+
+
+/* ==========================================================================
+   08. FOOTER
+   ========================================================================== */
+
+.pie {
+  padding-block: var(--sp-8) var(--sp-5);
+  background-color: var(--colore-superficie-alt);
+  border-top: 1px solid var(--colore-bordo);
+  margin-top: var(--sp-9);
+  font-size: var(--testo-s);
+}
+
+.pie__griglia {
+  display: grid;
+  gap: var(--sp-6);
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+  margin-bottom: var(--sp-7);
+}
+
+.pie h2,
+.pie h3 {
+  font-size: var(--testo-s);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--colore-tenue);
+  margin: 0 0 var(--sp-3);
+  font-family: var(--font-testo);
+  font-weight: 600;
+}
+
+.pie ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pie li {
+  margin-bottom: var(--sp-2);
+}
+
+.pie a {
+  color: var(--colore-inchiostro-2);
+  text-decoration: none;
+}
+
+.pie a:hover {
+  color: var(--colore-accento);
+  text-decoration: underline;
+}
+
+.pie__descrizione {
+  color: var(--colore-tenue);
+  max-width: 34ch;
+  margin: 0;
+}
+
+.pie__nota {
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--colore-bordo);
+  color: var(--colore-tenue);
+  font-size: var(--testo-xs);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  justify-content: space-between;
+}
+
+.pie__nota p {
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   09. THEMES
+   Switching happens through the data-tema attribute on the <html> element.
+   The system preference is also respected via a media query, but only
+   if the user has not made an explicit choice.
+   ========================================================================== */
+
+:root[data-tema="scuro"] {
+  --colore-pergamena:      #14110d;
+  --colore-superficie:     #1e1a15;
+  --colore-superficie-alt: #26211a;
+  --colore-inchiostro:     #f2ece1;
+  --colore-inchiostro-2:   #d6cec0;
+  --colore-tenue:          #a99e8c;
+  --colore-bordo:          #352f26;
+  --colore-bordo-forte:    #4d453a;
+
+  --colore-accento:        #e0919a;
+  --colore-accento-scuro:  #f0adb5;
+  --colore-oro:            #d9b45c;
+  --colore-oro-tenue:      #322a17;
+
+  --colore-focus:          #7ab8f5;
+
+  --ombra-s: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --ombra-m: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --ombra-l: 0 14px 40px rgba(0, 0, 0, 0.55);
+}
+
+:root[data-tema="scuro"] .fascia-citazione {
+  background-color: #0b0906;
+}
+
+/* In the dark theme the accent is a light pink: the white text of the
+   primary button would not have sufficient contrast and must therefore be darkened.
+   The :not() is necessary because this rule has greater specificity than
+   .bottone--secondario and would otherwise override its color,
+   making the secondary button illegible on a dark background. */
+:root[data-tema="scuro"] .bottone:not(.bottone--secondario) {
+  color: #1a1113;
+}
+
+:root[data-tema="scuro"] .bottone:not(.bottone--secondario):hover {
+  color: #1a1113;
+}
+
+
+/* ==========================================================================
+   10. ACCESSIBILITY AND USER PREFERENCES
+   ========================================================================== */
+
+/* Those who have asked the operating system for fewer animations receive
+   neither transitions nor smooth scrolling. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Text enlargement for those who need more contrast */
+@media (prefers-contrast: more) {
+  :root {
+    --colore-tenue: var(--colore-inchiostro-2);
+    --colore-bordo: var(--colore-bordo-forte);
+  }
+}
+
+
+/* ==========================================================================
+   11. PRINT
+   ========================================================================== */
+
+@media print {
+  .intestazione,
+  .bottone-tema,
+  .bottone-menu,
+  .filtri,
+  .salta-al-contenuto {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+
+  a::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #444;
+  }
+
+  .scheda {
+    break-inside: avoid;
+    box-shadow: none;
+  }
+}
+
+
+/* ==========================================================================
+   12. MEDIA QUERIES
+   Few and targeted: most of the responsive behaviour is already handled by clamp(),
+   auto-fit/minmax and by relative units.
+   ========================================================================== */
+
+/* --- Narrow screens: dropdown navigation ----------------------------- */
+@media (max-width: 46rem) {
+  .bottone-menu {
+    display: grid;
+  }
+
+  .nav__elenco {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--sp-3);
+    background-color: var(--colore-superficie);
+    border-bottom: 1px solid var(--colore-bordo);
+    box-shadow: var(--ombra-m);
+  }
+
+  /* The open state is driven by JavaScript through the
+     data-aperto attribute on the navigation container. */
+  .nav[data-aperto="true"] .nav__elenco {
+    display: flex;
+  }
+
+  .nav__voce {
+    padding: var(--sp-3) var(--sp-4);
+    font-size: var(--testo-m);
+  }
+
+  .nav__voce[aria-current="page"] {
+    box-shadow: inset 3px 0 0 var(--colore-accento);
+  }
+
+  .intestazione__interno {
+    position: relative;
+  }
+
+  .sezione {
+    padding-block: var(--sp-7);
+  }
+
+  .eroe {
+    padding-block: var(--sp-8);
+  }
+}
+
+/* --- Narrow screen: tables as blocks and single-column index ------ */
+@media (max-width: 34rem) {
+  .indice-colonne {
+    columns: 1;
+  }
+
+  .tabella-metadati,
+  .tabella-metadati tbody,
+  .tabella-metadati tr,
+  .tabella-metadati th,
+  .tabella-metadati td {
+    display: block;
+    width: 100%;
+  }
+
+  .tabella-metadati thead {
+    display: none;
+  }
+
+  .tabella-metadati tr {
+    margin-bottom: var(--sp-4);
+    border: 1px solid var(--colore-bordo);
+    border-radius: var(--raggio-m);
+    overflow: hidden;
+  }
+
+  .tabella-metadati th {
+    border-bottom: none;
+    padding-bottom: var(--sp-1);
+  }
+
+  .tabella-metadati td {
+    padding-top: var(--sp-1);
+  }
+}
+
+/* --- Large screens: more breathing room --------------------------------------- */
+@media (min-width: 64rem) {
+  :root {
+    --sp-8: 5rem;
+    --sp-9: 8rem;
+  }
+}

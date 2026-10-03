@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" data-tema="chiaro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codices — Digital library of illuminated manuscripts</title>
+  <meta name="description" content="Codices is a digital library that describes and makes accessible six illuminated manuscripts, with Dublin Core metadata, TEI transcriptions and IIIF images.">
+  <meta name="author" content="YU DONG">
+  <meta name="theme-color" content="#fbf7ef">
+
+  <!-- Open Graph: how the link appears when it is shared on social media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Codices — Digital library of illuminated manuscripts">
+  <meta property="og:description" content="Six illuminated manuscripts described with normalised metadata and made accessible to all.">
+  <meta property="og:locale" content="en_US">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- The theme is applied before the first paint of the page, so the classic
+       "flash" of the wrong colour on load is not visible. -->
+  <script>
+    (function () {
+      try {
+        var salvato = localStorage.getItem('codices-tema');
+        var preferito = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'scuro' : 'chiaro';
+        document.documentElement.setAttribute('data-tema', salvato || preferito);
+      } catch (e) { /* localStorage not available: the light theme is kept */ }
+    })();
+  </script>
+</head>
+
+<body>
+  <a class="salta-al-contenuto" href="#contenuto-principale">Skip to main content</a>
+
+  <!-- ===== Header ======================================================= -->
+  <header class="intestazione">
+    <div class="contenitore intestazione__interno">
+      <a class="marchio" href="index.html">
+        <svg class="marchio__simbolo" viewBox="0 0 32 32" fill="none" stroke="currentColor"
+             stroke-width="1.6" aria-hidden="true">
+          <path d="M4 6.5c4-1.6 8-1.6 12 0v19c-4-1.6-8-1.6-12 0z"/>
+          <path d="M28 6.5c-4-1.6-8-1.6-12 0v19c4-1.6 8-1.6 12 0z"/>
+          <path d="M16 6.5v19" stroke-width="1"/>
+        </svg>
+        <span>
+          Codices
+          <span class="marchio__sottotitolo">Digital library</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav-principale" aria-label="Main navigation">
+        <ul class="nav__elenco">
+          <li><a class="nav__voce" href="index.html" aria-current="page">Home</a></li>
+          <li><a class="nav__voce" href="collezione.html">Collection</a></li>
+          <li><a class="nav__voce" href="metodo.html">Method</a></li>
+          <li><a class="nav__voce" href="progetto.html">Project</a></li>
+        </ul>
+      </nav>
+
+      <div class="azioni-intestazione">
+        <button class="bottone-tema" type="button" id="bottone-tema"
+                aria-label="Switch to dark theme" aria-pressed="false">
+          <svg class="icona-luna" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+          </svg>
+          <svg class="icona-sole" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+          </svg>
+        </button>
+
+        <button class="bottone-menu" type="button" id="bottone-menu"
+                aria-label="Open the navigation menu" aria-expanded="false"
+                aria-controls="nav-principale">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenuto-principale">
+
+    <!-- ===== Opening section ============================================= -->
+    <section class="eroe">
+      <div class="contenitore">
+        <div class="eroe__testo">
+          <!-- The notice about the nature of the prototype is here, above the
+               title, and not at the bottom of the page: the comprehension test
+               showed that those who stop in the first seconds never reach the
+               notice at the bottom. See the Communication Plan, § 9.2. -->
+          <p class="occhiello">
+            Teaching prototype · Sample data · Humanities Informatics
+          </p>
+          <h1>Six illuminated manuscripts, described once, readable by anyone.</h1>
+          <p class="eroe__descrizione">
+            <strong>Codices</strong> is a small-scale digital library that gathers six
+            illuminated manuscripts. Each item is accompanied by a catalogue record of
+            normalised metadata, a transcription in TEI format and a high-resolution
+            image published according to the IIIF standard.
+          </p>
+          <div class="gruppo-bottoni">
+            <a class="bottone" href="collezione.html">
+              Explore the collection
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"/>
+              </svg>
+            </a>
+            <a class="bottone bottone--secondario" href="metodo.html">How the project is built</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Project figures ============================================= -->
+    <section class="sezione" aria-labelledby="titolo-numeri">
+      <div class="contenitore">
+        <div class="intestazione-sezione">
+          <h2 id="titolo-numeri">The project in figures</h2>
+          <p class="sottotitolo">
+            A deliberately modest scale: the objective is not quantity,
+            but the quality of the description and its sustainability over time.
+          </p>
+        </div>
+
+        <ul class="statistiche">
+          <li class="statistica">
+            <span class="statistica__numero">6</span>
+            <span class="statistica__etichetta">manuscripts described</span>
+          </li>
+          <li class="statistica">
+            <span class="statistica__numero">11</span>
+            <span class="statistica__etichetta">centuries of history covered</span>
+          </li>
+          <li class="statistica">
+            <span class="statistica__numero">15</span>
+            <span class="statistica__etichetta">Dublin Core elements per record</span>
+          </li>
+          <li class="statistica">
+            <span class="statistica__numero">100%</span>
+            <span class="statistica__etichetta">resources conforming to WCAG 2.1 AA</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Featured records =========================================== -->
+    <section class="sezione sezione--alt" aria-labelledby="titolo-evidenza">
+      <div class="contenitore">
+        <div class="intestazione-sezione">
+          <h2 id="titolo-evidenza">Featured</h2>
+          <p class="sottotitolo">
+            Three items chosen from those with the most complete documentation.
+          </p>
+        </div>
+
+        <div class="griglia">
+
+          <article class="scheda">
+            <img class="scheda__immagine" src="assets/codice-01.svg"
+                 alt="Illuminated page with a historiated initial in gold and red on a blue ground">
+            <div class="scheda__corpo">
+              <p class="scheda__segnatura">ms. 001 · 12th century</p>
+              <h3 class="scheda__titolo">
+                <a href="scheda.html">De civitate Dei</a>
+              </h3>
+              <p class="scheda__meta">
+                Augustine of Hippo. Parchment, 340 × 240 mm. Gothic book script
+                in two columns, full-page historiated initial.
+              </p>
+              <div class="scheda__footer">
+                <span class="badge">Digitised</span>
+                <span class="badge badge--neutro">Parchment</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="scheda">
+            <img class="scheda__immagine" src="assets/codice-02.svg"
+                 alt="Manuscript page with an initial decorated with foliate motifs">
+            <div class="scheda__corpo">
+              <p class="scheda__segnatura">ms. 002 · 14th century</p>
+              <h3 class="scheda__titolo">
+                <a href="scheda.html">Divina Commedia</a>
+              </h3>
+              <p class="scheda__meta">
+                Dante Alighieri. Parchment, 290 × 210 mm. Illumination of the
+                Bolognese school, three historiated initials.
+              </p>
+              <div class="scheda__footer">
+                <span class="badge">Digitised</span>
+                <span class="badge badge--neutro">Parchment</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="scheda">
+            <img class="scheda__immagine" src="assets/codice-03.svg"
+                 alt="Herbarium page with coloured botanical illustrations">
+            <div class="scheda__corpo">
+              <p class="scheda__segnatura">ms. 003 · 15th century</p>
+              <h3 class="scheda__titolo">
+                <a href="scheda.html">Tacuinum sanitatis</a>
+              </h3>
+              <p class="scheda__meta">
+                Anonymous. Paper, 310 × 220 mm. 118 botanical illustrations with
+                captions in the vernacular.
+              </p>
+              <div class="scheda__footer">
+                <span class="badge">Digitised</span>
+                <span class="badge badge--neutro">Paper</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="gruppo-bottoni">
+          <a class="bottone bottone--secondario" href="collezione.html">View all six items</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== How it works =============================================== -->
+    <section class="sezione" aria-labelledby="titolo-passi">
+      <div class="contenitore">
+        <div class="intestazione-sezione">
+          <h2 id="titolo-passi">From physical object to digital resource</h2>
+          <p class="sottotitolo">
+            Four phases, each with a verifiable output. Each phase is described
+            in the <a href="metodo.html">Method</a>.
+          </p>
+        </div>
+
+        <ol class="passi">
+          <li>
+            <h3>Survey</h3>
+            <p>
+              On-site inspection, measurements, condition report. It produces the
+              paper survey record.
+            </p>
+          </li>
+          <li>
+            <h3>Digitisation</h3>
+            <p>
+              Capture at 600 dpi, ICC colour profile, TIFF format as master.
+              It produces the preservation archive.
+            </p>
+          </li>
+          <li>
+            <h3>Description</h3>
+            <p>
+              Metadata in Dublin Core, transcription in TEI P5, alignment
+              with controlled vocabularies.
+            </p>
+          </li>
+          <li>
+            <h3>Publication</h3>
+            <p>
+              Export to HTML5 and IIIF, accessibility check, going
+              live and monitoring.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Quotation ================================================== -->
+    <section class="fascia-citazione">
+      <div class="contenitore">
+        <blockquote>
+          “A digital library is not a collection of files, but a set of
+          relationships described in such a way that a machine can process them
+          and a person can understand them.”
+          <cite>— Guiding principle of the Codices project</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ===== Methodological note ======================================== -->
+    <section class="sezione" aria-labelledby="titolo-strumenti">
+      <div class="contenitore">
+        <div class="intestazione-sezione">
+          <h2 id="titolo-strumenti">Standards adopted</h2>
+          <p class="sottotitolo">
+            Every technical choice answers to an international recommendation,
+            so that the data remain reusable even when this site
+            no longer exists.
+          </p>
+        </div>
+
+        <div class="griglia griglia--2">
+
+          <div class="riquadro">
+            <h3>Dublin Core</h3>
+            <p>
+              Fifteen basic descriptive elements (title, creator, date,
+              type, rights…) for the record of each manuscript. It is the
+              minimum standard for interoperability between digital libraries.
+            </p>
+          </div>
+
+          <div class="riquadro">
+            <h3>TEI P5</h3>
+            <p>
+              Text Encoding Initiative: the XML schema used to encode the
+              transcriptions, distinguishing spelling, expanded abbreviations
+              and editorial interventions.
+            </p>
+          </div>
+
+          <div class="riquadro">
+            <h3>IIIF</h3>
+            <p>
+              International Image Interoperability Framework: it exposes the
+              images through predictable URLs, allowing comparison between items
+              held in different institutions.
+            </p>
+          </div>
+
+          <div class="riquadro">
+            <h3>WCAG 2.1 AA</h3>
+            <p>
+              Guidelines for the accessibility of web content. The site uses
+              semantic HTML, verified contrast ratios, keyboard navigation and
+              respect for system preferences.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Notice on the nature of the data =========================== -->
+    <section class="sezione">
+      <div class="contenitore contenitore--stretto">
+        <div class="riquadro riquadro--attenzione">
+          <h3>Note on the data</h3>
+          <p>
+            The six items described in this prototype are <strong>sample
+            records</strong>, built on real models of Italian illuminated
+            manuscripts but not corresponding to shelfmarks held at any specific
+            institution. The metadata structure, the controlled
+            vocabularies and the export formats, on the other hand, are real and
+            applicable to an authentic collection.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ======================================================= -->
+  <footer class="pie">
+    <div class="contenitore">
+      <div class="pie__griglia">
+        <div>
+          <h2>Codices</h2>
+          <p class="pie__descrizione">
+            Digital library of illuminated manuscripts. Prototype made
+            for the course in Humanities Informatics.
+          </p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="collezione.html">Collection</a></li>
+            <li><a href="metodo.html">Method</a></li>
+            <li><a href="progetto.html">Project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="progetto.html#documentazione">Documentation</a></li>
+            <li><a href="progetto.html#licenza">Data licence</a></li>
+            <li><a href="metodo.html#accessibilita">Accessibility statement</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pie__nota">
+        <p>© 2026 YU DONG. Content released under a CC BY 4.0 licence.</p>
+        <p>Last updated: <time datetime="2026-09-19">19 September 2026</time></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" data-tema="chiaro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Collection — Codices</title>
+  <meta name="description" content="The six illuminated manuscripts of the Codices digital library, with filters by century and writing support.">
+  <meta name="author" content="YU DONG">
+  <meta name="theme-color" content="#fbf7ef">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function () {
+      try {
+        var salvato = localStorage.getItem('codices-tema');
+        var preferito = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'scuro' : 'chiaro';
+        document.documentElement.setAttribute('data-tema', salvato || preferito);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+
+<body>
+  <a class="salta-al-contenuto" href="#contenuto-principale">Skip to main content</a>
+
+  <header class="intestazione">
+    <div class="contenitore intestazione__interno">
+      <a class="marchio" href="index.html">
+        <svg class="marchio__simbolo" viewBox="0 0 32 32" fill="none" stroke="currentColor"
+             stroke-width="1.6" aria-hidden="true">
+          <path d="M4 6.5c4-1.6 8-1.6 12 0v19c-4-1.6-8-1.6-12 0z"/>
+          <path d="M28 6.5c-4-1.6-8-1.6-12 0v19c4-1.6 8-1.6 12 0z"/>
+          <path d="M16 6.5v19" stroke-width="1"/>
+        </svg>
+        <span>
+          Codices
+          <span class="marchio__sottotitolo">Digital library</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav-principale" aria-label="Main navigation">
+        <ul class="nav__elenco">
+          <li><a class="nav__voce" href="index.html">Home</a></li>
+          <li><a class="nav__voce" href="collezione.html" aria-current="page">Collection</a></li>
+          <li><a class="nav__voce" href="metodo.html">Method</a></li>
+          <li><a class="nav__voce" href="progetto.html">Project</a></li>
+        </ul>
+      </nav>
+
+      <div class="azioni-intestazione">
+        <button class="bottone-tema" type="button" id="bottone-tema"
+                aria-label="Switch to dark theme" aria-pressed="false">
+          <svg class="icona-luna" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+          </svg>
+          <svg class="icona-sole" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+          </svg>
+        </button>
+        <button class="bottone-menu" type="button" id="bottone-menu"
+                aria-label="Open the navigation menu" aria-expanded="false"
+                aria-controls="nav-principale">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenuto-principale">
+
+    <div class="contenitore">
+      <nav class="briciole" aria-label="Breadcrumb trail">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li aria-current="page">Collection</li>
+        </ol>
+      </nav>
+    </div>
+
+    <section class="sezione sezione--continua" aria-labelledby="titolo-collezione">
+      <div class="contenitore">
+        <div class="intestazione-sezione">
+          <p class="occhiello">Catalogue</p>
+          <h1 id="titolo-collezione">The collection</h1>
+          <p class="sottotitolo">
+            Six items datable between the 11th and the 15th century. Each
+            catalogue entry records the descriptive metadata, the material
+            data and the state of digitisation.
+          </p>
+        </div>
+
+        <!-- ===== Filters ================================================== -->
+        <form class="filtri" id="filtri" role="search" aria-label="Filter the collection">
+          <div class="campo">
+            <label for="filtro-testo">Search by title</label>
+            <input type="search" id="filtro-testo" name="q"
+                   placeholder="E.g. Commedia, herbal…" autocomplete="off">
+          </div>
+
+          <div class="campo">
+            <label for="filtro-secolo">Century</label>
+            <select id="filtro-secolo" name="secolo">
+              <option value="">All centuries</option>
+              <option value="11">11th century</option>
+              <option value="12">12th century</option>
+              <option value="14">14th century</option>
+              <option value="15">15th century</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="filtro-supporto">Support</label>
+            <select id="filtro-supporto" name="supporto">
+              <option value="">All supports</option>
+              <option value="Pergamena">Parchment</option>
+              <option value="Carta">Paper</option>
+            </select>
+          </div>
+
+          <!-- The filter is already applied while typing, but the form still
+               needs a submit button: without it the Enter key has no effect
+               and the form does not satisfy WCAG criterion H32. The handler in
+               main.js cancels the actual submission and reapplies the filter. -->
+          <button class="bottone" type="submit">Search</button>
+
+          <button class="bottone bottone--secondario" type="reset" id="azzera-filtri">
+            Clear filters
+          </button>
+        </form>
+
+        <!-- Region announced by screen readers on every filter change: it
+             reports how many results remain without moving the focus.
+             aria-live="polite" makes the message wait for the reader's pause
+             instead of interrupting it. -->
+        <p class="conteggio-risultati" id="conteggio" role="status" aria-live="polite"></p>
+
+        <div class="griglia" id="elenco-schede">
+
+          <article class="scheda" data-titolo="de civitate dei" data-secolo="12" data-supporto="Pergamena">
+            <img class="scheda__immagine" src="assets/codice-01.svg"
+                 alt="Illuminated page with a historiated initial in gold and red on a blue ground">
+            <div class="scheda__corpo">
+              <p class="scheda__segnatura">ms. 001 · 12th century</p>
+              <h3 class="scheda__titolo"><a href="scheda.html">De civitate Dei</a></h3>
+              <p class="scheda__meta">
+                Augustine of Hippo. 340 × 240 mm, two columns, full-page
+                historiated initial.
+              </p>
+              <div class="scheda__footer">
+                <span class="badge">Digitised</span>
+                <span class="badge badge--neutro">Parchment</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="scheda" data-titolo="divina commedia" data-secolo="14" data-supporto="Pergamena">
+            <img class="scheda__immagine" src="assets/codice-02.svg"
+                 alt="Manuscript page with a decorated initial in foliate motifs">
+            <div class="scheda__corpo">
+              <p class="scheda__segnatura">ms. 002 · 14th century</p>
+              <h3 class="scheda__titolo"><a href="scheda.html">Divina Commedia</a></h3>
+              <p class="scheda__meta">
+                Dante Alighieri. 290 × 210 mm, illumination of the Bolognese
+                school, three historiated initials.
+              </p>
+              <div class="scheda__footer">
+                <span class="badge">Digitised</span>
+                <span class="badge badge--neutro">Parchment</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="scheda" data-titolo="tacuinum sanitatis" data-secolo="15" data-supporto="Carta">
+            <img class="scheda__immagine" src="assets/codice-03.svg"
+                 alt="Herbal page with coloured botanical illustrations">
+            <div class="scheda__corpo">
+              <p class="scheda__segnatura">ms. 003 · 15th century</p>
+              <h3 class="scheda__titolo"><a href="scheda.html">Tacuinum sanitatis</a></h3>
+              <p class="scheda__meta">
+                Anonymous. 310 × 220 mm, 118 botanical illustrations with
+                captions in the vernacular.
+              </p>
+              <div class="scheda__footer">
+                <span class="badge">Digitised</span>
+                <span class="badge badge--neutro">Paper</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="scheda" data-titolo="biblia atlantica" data-secolo="11" data-supporto="Pergamena">
+            <img class="scheda__immagine" src="assets/codice-04.svg"
+                 alt="Large Bible page with a geometric initial of scrollwork">
+            <div class="scheda__corpo">
+              <p class="scheda__segnatura">ms. 004 · 11th century</p>
+              <h3 class="scheda__titolo"><a href="scheda.html">Biblia atlantica</a></h3>
+              <p class="scheda__meta">
+                Anonymous. 580 × 380 mm, monumental format, scrollwork
+                initials in red and brown.
+              </p>
+              <div class="scheda__footer">
+                <span class="badge">Digitised</span>
+                <span class="badge badge--neutro">Parchment</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="scheda" data-titolo="antiphonary" data-secolo="15" data-supporto="Pergamena">
+            <img class="scheda__immagine" src="assets/codice-05.svg"
+                 alt="Antiphonary page with square musical notation and an illuminated initial">
+            <div class="scheda__corpo">
+              <p class="scheda__segnatura">ms. 005 · 15th century</p>
+              <h3 class="scheda__titolo"><a href="scheda.html">Antiphonary</a></h3>
+              <p class="scheda__meta">
+                Anonymous. 520 × 370 mm, square notation on a four-line staff,
+                initial with the figure of a saint.
+              </p>
+              <div class="scheda__footer">
+                <span class="badge">Digitised</span>
+                <span class="badge badge--neutro">Parchment</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="scheda" data-titolo="herbal" data-secolo="15" data-supporto="Carta">
+            <img class="scheda__immagine" src="assets/codice-06.svg"
+                 alt="Late medieval herbal page with a medicinal plant drawn in pen">
+            <div class="scheda__corpo">
+              <p class="scheda__segnatura">ms. 006 · 15th century</p>
+              <h3 class="scheda__titolo"><a href="scheda.html">Herbal</a></h3>
+              <p class="scheda__meta">
+                Anonymous. 220 × 160 mm, watercoloured pen drawings,
+                glossary of vernacular names.
+              </p>
+              <div class="scheda__footer">
+                <span class="badge">Digitised</span>
+                <span class="badge badge--neutro">Paper</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Message shown by JavaScript when no catalogue entry
+             matches the search criteria. -->
+        <div class="messaggio-vuoto" id="nessun-risultato" hidden>
+          <p><strong>No manuscript matches the given criteria.</strong></p>
+          <p>Try removing one of the filters or searching for a more general term.</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="contenitore">
+      <div class="pie__griglia">
+        <div>
+          <h2>Codices</h2>
+          <p class="pie__descrizione">
+            Digital library of illuminated manuscripts. Prototype created
+            for the course in Humanities Informatics.
+          </p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="collezione.html">Collection</a></li>
+            <li><a href="metodo.html">Method</a></li>
+            <li><a href="progetto.html">Project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="progetto.html#documentazione">Documentation</a></li>
+            <li><a href="progetto.html#licenza">Data licence</a></li>
+            <li><a href="metodo.html#accessibilita">Accessibility statement</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pie__nota">
+        <p>© 2026 YU DONG. Content released under a CC BY 4.0 licence.</p>
+        <p>Last updated: <time datetime="2026-09-19">19 September 2026</time></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

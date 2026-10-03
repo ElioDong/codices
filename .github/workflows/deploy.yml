@@ -1,0 +1,48 @@
+# Automatic deployment of the web resource to GitHub Pages.
+#
+# The site is static: there is nothing to build. The workflow simply
+# packages the site/ folder and hands it over to Pages.
+#
+# Activation, once only: Settings -> Pages -> Source -> GitHub Actions.
+
+name: Publish the site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Allows the deployment to be started by hand from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# If several pushes follow one another, lets the one in progress finish instead
+# of cancelling it: an interrupted deployment would leave the site half-done.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Prepare the site files
+        uses: actions/configure-pages@v5
+
+      - name: Upload the site/ folder
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

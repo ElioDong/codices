@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" data-tema="chiaro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>De civitate Dei, ms. 001 — Codices</title>
+  <meta name="description" content="Catalogue record for manuscript ms. 001, De civitate Dei by Augustine of Hippo: Dublin Core metadata, physical data and TEI transcription.">
+  <meta name="author" content="YU DONG">
+  <meta name="theme-color" content="#fbf7ef">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function () {
+      try {
+        var salvato = localStorage.getItem('codices-tema');
+        var preferito = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'scuro' : 'chiaro';
+        document.documentElement.setAttribute('data-tema', salvato || preferito);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+
+<body>
+  <a class="salta-al-contenuto" href="#contenuto-principale">Skip to main content</a>
+
+  <header class="intestazione">
+    <div class="contenitore intestazione__interno">
+      <a class="marchio" href="index.html">
+        <svg class="marchio__simbolo" viewBox="0 0 32 32" fill="none" stroke="currentColor"
+             stroke-width="1.6" aria-hidden="true">
+          <path d="M4 6.5c4-1.6 8-1.6 12 0v19c-4-1.6-8-1.6-12 0z"/>
+          <path d="M28 6.5c-4-1.6-8-1.6-12 0v19c4-1.6 8-1.6 12 0z"/>
+          <path d="M16 6.5v19" stroke-width="1"/>
+        </svg>
+        <span>
+          Codices
+          <span class="marchio__sottotitolo">Digital library</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav-principale" aria-label="Main navigation">
+        <ul class="nav__elenco">
+          <li><a class="nav__voce" href="index.html">Home</a></li>
+          <li><a class="nav__voce" href="collezione.html" aria-current="page">Collection</a></li>
+          <li><a class="nav__voce" href="metodo.html">Method</a></li>
+          <li><a class="nav__voce" href="progetto.html">Project</a></li>
+        </ul>
+      </nav>
+
+      <div class="azioni-intestazione">
+        <button class="bottone-tema" type="button" id="bottone-tema"
+                aria-label="Switch to dark theme" aria-pressed="false">
+          <svg class="icona-luna" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+          </svg>
+          <svg class="icona-sole" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+          </svg>
+        </button>
+        <button class="bottone-menu" type="button" id="bottone-menu"
+                aria-label="Open the navigation menu" aria-expanded="false"
+                aria-controls="nav-principale">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenuto-principale">
+
+    <div class="contenitore">
+      <nav class="briciole" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="collezione.html">Collection</a></li>
+          <li aria-current="page">ms. 001</li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- ===== Record header ============================================== -->
+    <section class="sezione sezione--continua" aria-labelledby="titolo-scheda">
+      <div class="contenitore">
+        <p class="occhiello">ms. 001 · 12th century · Parchment</p>
+        <h1 id="titolo-scheda">De civitate Dei</h1>
+        <p class="sottotitolo">
+          Augustine of Hippo. Parchment codex of 284 folios, two columns of
+          Gothic book script, full-page historiated initial.
+        </p>
+
+        <div class="gruppo-bottoni">
+          <a class="bottone" href="#trascrizione">
+            Go to the transcription
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </a>
+          <a class="bottone bottone--secondario" href="#" download>
+            Download the metadata (JSON)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Image and physical data ==================================== -->
+    <section class="sezione sezione--alt" aria-labelledby="titolo-immagine">
+      <div class="contenitore">
+        <div class="griglia griglia--2">
+
+          <figure class="figura">
+            <img src="assets/codice-01.svg" alt="Folio 1 recto of ms. 001: historiated initial
+                 depicting the City of God within a gilded frame, on a blue ground."
+                 >
+            <figcaption class="figura__didascalia">
+              Folio 1 recto. Historiated initial <em>I</em> with the depiction
+              of the City of God. Sample image published via
+              IIIF Image API 3.0.
+            </figcaption>
+          </figure>
+
+          <div>
+            <h2 id="titolo-immagine" class="mt-0">Physical data</h2>
+            <table class="tabella-metadati">
+              <caption>Physical description of the copy</caption>
+              <tbody>
+                <tr><th scope="row">Shelfmark</th><td>ms. 001</td></tr>
+                <tr><th scope="row">Support</th><td>Parchment</td></tr>
+                <tr><th scope="row">Dimensions</th><td>340 × 240 mm</td></tr>
+                <tr><th scope="row">Folios</th><td>284, modern pencil foliation</td></tr>
+                <tr><th scope="row">Collation</th><td>Quaternions, catchwords visible at the centre of the lower margin</td></tr>
+                <tr><th scope="row">Script</th><td>Gothic book script, two columns of 42 lines</td></tr>
+                <tr><th scope="row">Decoration</th><td>1 full-page historiated initial, 18 larger pen initials</td></tr>
+                <tr><th scope="row">Binding</th><td>Leather over boards, 18th century, restored in 1998</td></tr>
+                <tr><th scope="row">Condition</th><td>Good; wormholes on folios 1–12</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Dublin Core metadata ======================================= -->
+    <section class="sezione" aria-labelledby="titolo-dc">
+      <div class="contenitore contenitore--stretto">
+        <div class="intestazione-sezione">
+          <h2 id="titolo-dc">Descriptive metadata (Dublin Core)</h2>
+          <p class="sottotitolo">
+            The fifteen elements of the Dublin Core standard, compiled according to the
+            controlled vocabularies indicated in brackets. These are the same
+            metadata exported in RDF/XML and harvested by OAI-PMH.
+          </p>
+        </div>
+
+        <table class="tabella-metadati">
+          <caption>Dublin Core elements for ms. 001</caption>
+          <thead>
+            <tr>
+              <th scope="col">Element</th>
+              <th scope="col">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">dc:title</th>
+              <td>De civitate Dei</td>
+            </tr>
+            <tr>
+              <th scope="row">dc:creator</th>
+              <td>Augustinus, Aurelius (354–430)</td>
+            </tr>
+            <tr>
+              <th scope="row">dc:contributor</th>
+              <td>Anonymous Bolognese illuminator <span class="badge badge--neutro">12th century</span></td>
+            </tr>
+            <tr>
+              <th scope="row">dc:subject</th>
+              <td>Theology; Political philosophy; Patristics <br>
+                  <span class="badge badge--neutro">Vocabulary: Nuovo Soggettario</span></td>
+            </tr>
+            <tr>
+              <th scope="row">dc:description</th>
+              <td>Parchment codex containing the twenty-two books of the <em>City of God</em>,
+                  preceded by a dedicatory letter to Bishop Marcellinus.</td>
+            </tr>
+            <tr>
+              <th scope="row">dc:publisher</th>
+              <td>Codices Digital Library</td>
+            </tr>
+            <tr>
+              <th scope="row">dc:date</th>
+              <td>c. 1150 <span class="badge badge--neutro">ISO 8601: 1150~</span></td>
+            </tr>
+            <tr>
+              <th scope="row">dc:type</th>
+              <td>Manuscript text <span class="badge badge--neutro">DCMI Type: Text</span></td>
+            </tr>
+            <tr>
+              <th scope="row">dc:format</th>
+              <td>application/tei+xml; image/tiff <span class="badge badge--neutro">MIME</span></td>
+            </tr>
+            <tr>
+              <th scope="row">dc:identifier</th>
+              <td><code>codices:ms-001</code></td>
+            </tr>
+            <tr>
+              <th scope="row">dc:source</th>
+              <td>Sample item, not corresponding to a real shelfmark</td>
+            </tr>
+            <tr>
+              <th scope="row">dc:language</th>
+              <td>lat <span class="badge badge--neutro">ISO 639-2</span></td>
+            </tr>
+            <tr>
+              <th scope="row">dc:relation</th>
+              <td><a href="collezione.html">Codices Collection</a></td>
+            </tr>
+            <tr>
+              <th scope="row">dc:coverage</th>
+              <td>Bologna, Italy <span class="badge badge--neutro">12th century</span></td>
+            </tr>
+            <tr>
+              <th scope="row">dc:rights</th>
+              <td>
+                <a href="https://creativecommons.org/licenses/by/4.0/deed.it"
+                   rel="license noopener" target="_blank">CC BY 4.0</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="riquadro">
+          <h4>Why fifteen elements and no more</h4>
+          <p class="mb-0">
+            Dublin Core is deliberately minimal: it is the subset of
+            description on which any institution can converge. The finer
+            data — collation, watermarks, graphic variants — live in the
+            TEI transcription, which is rich but not interoperable at the same
+            level. The strategy is: <strong>Dublin Core to be found, TEI
+            to be understood</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Transcription ============================================== -->
+    <section class="sezione sezione--alt" id="trascrizione" aria-labelledby="titolo-trascrizione">
+      <div class="contenitore contenitore--stretto">
+        <div class="intestazione-sezione">
+          <h2 id="titolo-trascrizione">Transcription</h2>
+          <p class="sottotitolo">
+            TEI P5 encoding of folio 1 recto. Abbreviations are expanded
+            in square brackets, editorial additions in italics.
+          </p>
+        </div>
+
+        <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;TEI xmlns="http://www.tei-c.org/ns/1.0"&gt;
+  &lt;teiHeader&gt;
+    &lt;fileDesc&gt;
+      &lt;titleStmt&gt;
+        &lt;title&gt;De civitate Dei&lt;/title&gt;
+        &lt;author&gt;Augustinus, Aurelius&lt;/author&gt;
+      &lt;/titleStmt&gt;
+      &lt;publicationStmt&gt;
+        &lt;publisher&gt;Codices Digital Library&lt;/publisher&gt;
+        &lt;idno type="shelfmark"&gt;ms. 001&lt;/idno&gt;
+      &lt;/publicationStmt&gt;
+      &lt;sourceDesc&gt;
+        &lt;msDesc&gt;
+          &lt;msIdentifier&gt;
+            &lt;repository&gt;Codices&lt;/repository&gt;
+            &lt;idno&gt;ms. 001&lt;/idno&gt;
+          &lt;/msIdentifier&gt;
+          &lt;physDesc&gt;
+            &lt;objectDesc form="codex"&gt;
+              &lt;supportDesc material="parchment"&gt;
+                &lt;extent&gt;284 folios&lt;/extent&gt;
+                &lt;dimensions unit="mm"&gt;340 × 240&lt;/dimensions&gt;
+              &lt;/supportDesc&gt;
+            &lt;/objectDesc&gt;
+          &lt;/physDesc&gt;
+        &lt;/msDesc&gt;
+      &lt;/sourceDesc&gt;
+    &lt;/fileDesc&gt;
+  &lt;/teiHeader&gt;
+
+  &lt;text&gt;
+    &lt;body&gt;
+      &lt;div type="liber" n="1"&gt;
+        &lt;pb n="1r"/&gt;
+        &lt;head&gt;Incipit liber primus&lt;/head&gt;
+        &lt;p&gt;
+          &lt;lb/&gt;Gloriosissimam ciuitatem dei siue in hoc
+          &lt;lb/&gt;tempore peregrinantem in fide
+          &lt;lb/&gt;&lt;abbr&gt;q[uo]&lt;/abbr&gt; ex illa uictrice
+          &lt;lb/&gt;immortalium populorum multitudine
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/body&gt;
+  &lt;/text&gt;
+&lt;/TEI&gt;</code></pre>
+
+        <div class="griglia griglia--2">
+          <div class="riquadro">
+            <h4>Elements used</h4>
+            <ul class="mb-0">
+              <li><code>&lt;msDesc&gt;</code> — structured codicological description</li>
+              <li><code>&lt;lb/&gt;</code> — line break in the witness</li>
+              <li><code>&lt;abbr&gt;</code> — abbreviation, with expansion in square brackets</li>
+              <li><code>&lt;pb/&gt;</code> — change of folio</li>
+            </ul>
+          </div>
+          <div class="riquadro">
+            <h4>Why not HTML alone</h4>
+            <p class="mb-0">
+              In HTML one could write the same thing with <code>&lt;p&gt;</code>
+              and <code>&lt;br&gt;</code>, but the <em>meaning</em> would be lost:
+              a machine would not be able to distinguish a line break in the
+              manuscript from a typographic line break. TEI serves to say what
+              that text <em>is</em>, not merely how it is to be displayed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== How to cite ================================================ -->
+    <section class="sezione" aria-labelledby="titolo-citazione">
+      <div class="contenitore contenitore--stretto">
+        <h2 id="titolo-citazione">How to cite this record</h2>
+        <blockquote>
+          Codices, <em>De civitate Dei</em>, ms. 001, 12th century.
+          Codices Digital Library, 2026.
+          &lt;<span class="spezzare-parola">https://esempio.it/scheda.html</span>&gt;
+          <cite>Accessed on 19 September 2026.</cite>
+        </blockquote>
+
+        <div class="gruppo-bottoni">
+          <a class="bottone bottone--secondario" href="collezione.html">← Back to the collection</a>
+          <a class="bottone bottone--secondario" href="metodo.html">How these data are produced</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="contenitore">
+      <div class="pie__griglia">
+        <div>
+          <h2>Codices</h2>
+          <p class="pie__descrizione">
+            Digital library of illuminated manuscripts. Prototype created
+            for the course in Humanities Informatics.
+          </p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="collezione.html">Collection</a></li>
+            <li><a href="metodo.html">Method</a></li>
+            <li><a href="progetto.html">Project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="progetto.html#documentazione">Documentation</a></li>
+            <li><a href="progetto.html#licenza">Data licence</a></li>
+            <li><a href="metodo.html#accessibilita">Accessibility statement</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pie__nota">
+        <p>© 2026 YU DONG. Content released under CC BY 4.0 licence.</p>
+        <p>Last updated: <time datetime="2026-09-19">19 September 2026</time></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

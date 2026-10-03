@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" data-tema="chiaro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project — Codices</title>
+  <meta name="description" content="Objectives, phases, resources and licence of the Codices project, a digital library of illuminated manuscripts.">
+  <meta name="author" content="YU DONG">
+  <meta name="theme-color" content="#fbf7ef">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function () {
+      try {
+        var salvato = localStorage.getItem('codices-tema');
+        var preferito = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'scuro' : 'chiaro';
+        document.documentElement.setAttribute('data-tema', salvato || preferito);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+
+<body>
+  <a class="salta-al-contenuto" href="#contenuto-principale">Skip to main content</a>
+
+  <header class="intestazione">
+    <div class="contenitore intestazione__interno">
+      <a class="marchio" href="index.html">
+        <svg class="marchio__simbolo" viewBox="0 0 32 32" fill="none" stroke="currentColor"
+             stroke-width="1.6" aria-hidden="true">
+          <path d="M4 6.5c4-1.6 8-1.6 12 0v19c-4-1.6-8-1.6-12 0z"/>
+          <path d="M28 6.5c-4-1.6-8-1.6-12 0v19c4-1.6 8-1.6 12 0z"/>
+          <path d="M16 6.5v19" stroke-width="1"/>
+        </svg>
+        <span>
+          Codices
+          <span class="marchio__sottotitolo">Digital library</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav-principale" aria-label="Main navigation">
+        <ul class="nav__elenco">
+          <li><a class="nav__voce" href="index.html">Home</a></li>
+          <li><a class="nav__voce" href="collezione.html">Collection</a></li>
+          <li><a class="nav__voce" href="metodo.html">Method</a></li>
+          <li><a class="nav__voce" href="progetto.html" aria-current="page">Project</a></li>
+        </ul>
+      </nav>
+
+      <div class="azioni-intestazione">
+        <button class="bottone-tema" type="button" id="bottone-tema"
+                aria-label="Switch to dark theme" aria-pressed="false">
+          <svg class="icona-luna" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+          </svg>
+          <svg class="icona-sole" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+          </svg>
+        </button>
+        <button class="bottone-menu" type="button" id="bottone-menu"
+                aria-label="Open the navigation menu" aria-expanded="false"
+                aria-controls="nav-principale">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenuto-principale">
+
+    <div class="contenitore">
+      <nav class="briciole" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li aria-current="page">Project</li>
+        </ol>
+      </nav>
+    </div>
+
+    <section class="sezione sezione--continua" aria-labelledby="titolo-progetto">
+      <div class="contenitore">
+        <div class="intestazione-sezione">
+          <p class="occhiello">The project</p>
+          <h1 id="titolo-progetto">Objectives, phases and resources</h1>
+          <p class="sottotitolo">
+            What the project sets out to do, within what limits, by what means,
+            and by what criteria it is judged to have succeeded.
+          </p>
+        </div>
+
+        <div class="riquadro riquadro--testo">
+          <h3 class="mt-0">Summary</h3>
+          <table class="tabella-metadati mb-0">
+            <tbody>
+              <tr><th scope="row">Title</th><td>Codices — Digital library of illuminated manuscripts</td></tr>
+              <tr><th scope="row">Type</th><td>Individual project</td></tr>
+              <tr><th scope="row">Author</th><td>YU DONG, student ID 0001090264</td></tr>
+              <tr><th scope="row">Course</th><td>Humanities Informatics</td></tr>
+              <tr><th scope="row">Duration</th><td>8 weeks</td></tr>
+              <tr><th scope="row">Budget</th><td>No monetary expenditure; ~62 hours of work</td></tr>
+              <tr><th scope="row">Status</th><td><span class="badge">Completed</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Objectives ================================================== -->
+    <section class="sezione sezione--alt" aria-labelledby="titolo-obiettivi">
+      <div class="contenitore contenitore--stretto">
+        <h2 id="titolo-obiettivi">General objective</h2>
+        <p class="prosa">
+          To build a small-scale digital library that describes six illuminated
+          manuscripts with standardised metadata and makes them available to
+          anyone, on any device, without depending on proprietary technologies.
+        </p>
+
+        <h3>Specific, measurable objectives</h3>
+        <table class="tabella-metadati">
+          <caption>Objectives and verification criteria</caption>
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Objective</th>
+              <th scope="col">How it is verified</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">O1</th>
+              <td>Describe six manuscripts with metadata conforming to Dublin Core</td>
+              <td>Every record passes schema validation; the fifteen elements are present or justifiably absent</td>
+            </tr>
+            <tr>
+              <th scope="row">O2</th>
+              <td>Publish the site live by the deadline</td>
+              <td>Reachable URL, communicated to the lecturer at least one day before the exam</td>
+            </tr>
+            <tr>
+              <th scope="row">O3</th>
+              <td>Achieve WCAG 2.1 AA conformance</td>
+              <td>Automated check with axe DevTools with no errors; manual keyboard check</td>
+            </tr>
+            <tr>
+              <th scope="row">O4</th>
+              <td>Work without JavaScript</td>
+              <td>With JavaScript disabled, all content remains readable</td>
+            </tr>
+            <tr>
+              <th scope="row">O5</th>
+              <td>Load in under 2 seconds on a simulated 4G network</td>
+              <td>Measurements with Lighthouse on the collection page</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>What the project does not do</h3>
+        <p class="prosa">
+          Defining the scope is part of the work. The following remain outside
+          it: the actual digitisation of authentic copies, optical character
+          recognition (OCR) on transcriptions, full-text search, user
+          authentication, and any form of <em>online</em> editorial
+          collaboration.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Phases ====================================================== -->
+    <section class="sezione" aria-labelledby="titolo-fasi">
+      <div class="contenitore contenitore--stretto">
+        <h2 id="titolo-fasi">Phases and schedule</h2>
+        <p class="prosa">
+          The project lasted eight weeks. The detailed Gantt chart is in the
+          project plan submitted separately; a summary is given here.
+        </p>
+
+        <table class="tabella-metadati">
+          <caption>Summary schedule</caption>
+          <thead>
+            <tr>
+              <th scope="col">Phase</th>
+              <th scope="col">Weeks</th>
+              <th scope="col">Hours</th>
+              <th scope="col">Deliverable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Analysis and scope definition</th>
+              <td>1</td><td>6</td><td>Project document, scope and objectives</td>
+            </tr>
+            <tr>
+              <th scope="row">Data model and selection of standards</th>
+              <td>2</td><td>8</td><td>Metadata schema, controlled vocabularies</td>
+            </tr>
+            <tr>
+              <th scope="row">Interface design</th>
+              <td>3</td><td>8</td><td>Page structure, visual system</td>
+            </tr>
+            <tr>
+              <th scope="row">HTML and CSS implementation</th>
+              <td>4–5</td><td>18</td><td>Complete five-page site</td>
+            </tr>
+            <tr>
+              <th scope="row">Content writing</th>
+              <td>5–6</td><td>10</td><td>Records, method texts, completed metadata</td>
+            </tr>
+            <tr>
+              <th scope="row">Accessibility and performance testing</th>
+              <td>7</td><td>7</td><td>Test report, corrections</td>
+            </tr>
+            <tr>
+              <th scope="row">Deployment and final documentation</th>
+              <td>8</td><td>5</td><td>Public URL, communication plan</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="nota-piccola">
+          Total: 62 hours. The initial estimate was 56 hours; the variance is
+          due to the accessibility testing phase, which required more work than
+          expected on keyboard navigation.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Documentation =============================================== -->
+    <section class="sezione sezione--alt" id="documentazione" aria-labelledby="titolo-documentazione">
+      <div class="contenitore contenitore--stretto">
+        <h2 id="titolo-documentazione">Project documentation</h2>
+        <p class="prosa">
+          The project is accompanied by three documents, submitted separately
+          from the site.
+        </p>
+
+        <div class="griglia griglia--2">
+          <div class="riquadro">
+            <h3 class="mt-0">Project plan</h3>
+            <p>
+              Objectives, scope, work breakdown structure, schedule,
+              responsibility matrix, risk analysis, quality plan and change
+              management.
+            </p>
+          </div>
+          <div class="riquadro">
+            <h3 class="mt-0">Communication plan</h3>
+            <p>
+              Audience analysis, key messages, choice of channels, tone of
+              voice, editorial calendar, performance indicators and crisis
+              management.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Licence ===================================================== -->
+    <section class="sezione" id="licenza" aria-labelledby="titolo-licenza">
+      <div class="contenitore contenitore--stretto">
+        <h2 id="titolo-licenza">Licence and reuse</h2>
+        <p class="prosa">
+          The descriptive content and the sample images are released under a
+          <a href="https://creativecommons.org/licenses/by/4.0/deed.it"
+          rel="license noopener" target="_blank">Creative Commons BY 4.0</a>
+          licence: anyone may reuse them, including commercially, provided the
+          source is cited.
+        </p>
+        <p class="prosa">
+          The HTML and CSS code is released under the MIT licence. This dual
+          licensing is deliberate: data and code raise different issues and
+          deserve different legal instruments. Data should circulate as widely
+          as possible; code should be reusable even within projects with
+          different licences.
+        </p>
+
+        <h3>How to cite the project</h3>
+        <blockquote>
+          YU DONG, <em>Codices — Digital library of illuminated
+          manuscripts</em>, project for the course in Humanities Informatics, academic year 2026/2027.
+          &lt;<span class="spezzare-parola">https://esempio.it</span>&gt;
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ===== Contacts ==================================================== -->
+    <section class="sezione sezione--alt" aria-labelledby="titolo-contatti">
+      <div class="contenitore contenitore--stretto">
+        <h2 id="titolo-contatti">Contacts</h2>
+        <table class="tabella-metadati">
+          <caption>Project details</caption>
+          <tbody>
+            <tr><th scope="row">Author</th><td>YU DONG</td></tr>
+            <tr><th scope="row">Student ID</th><td>0001090264</td></tr>
+            <tr><th scope="row">Degree programme</th><td>Bachelor's degree in Communication Sciences</td></tr>
+            <tr><th scope="row">Email</th><td><a href="mailto:yu.dong@studio.unibo.it">yu.dong@studio.unibo.it</a></td></tr>
+            <tr><th scope="row">Academic year</th><td>2026/2027</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="contenitore">
+      <div class="pie__griglia">
+        <div>
+          <h2>Codices</h2>
+          <p class="pie__descrizione">
+            Digital library of illuminated manuscripts. Prototype created
+            for the course in Humanities Informatics.
+          </p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="collezione.html">Collection</a></li>
+            <li><a href="metodo.html">Method</a></li>
+            <li><a href="progetto.html">Project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="progetto.html#documentazione">Documentation</a></li>
+            <li><a href="progetto.html#licenza">Data licence</a></li>
+            <li><a href="metodo.html#accessibilita">Accessibility statement</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pie__nota">
+        <p>© 2026 YU DONG. Content released under a CC BY 4.0 licence.</p>
+        <p>Last updated: <time datetime="2026-09-19">19 September 2026</time></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
